@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Navegação Acessível — IFMG Campus Ibirité</title>
+  <style>
+    /* === VARIÁVEIS INSTITUCIONAIS IFMG === */
+    :root {
+      --verde: #2E7D32;
+      --verde-escuro: #1B5E20;
+      --verde-claro: #E8F5E9;
+      --verde-borda: #A5D6A7;
+      --vermelho: #C62828;
+      --vermelho-claro: #FFEBEE;
+      --branco: #FFFFFF;
+      --cinza-fundo: #F5F5F5;
+      --cinza-borda: #E0E0E0;
+      --cinza-texto: #616161;
+      --preto: #1A1A1A;
+      --foco: #FF6F00;
+    }
+
+    /* === RESET E BASE === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      background: var(--cinza-fundo);
+      color: var(--preto);
+    }
+
+    /* === ACESSIBILIDADE: FOCO VISÍVEL === */
+    :focus-visible {
+      outline: 4px solid var(--foco);
+      outline-offset: 3px;
+    }
+
+    /* === SKIP LINK === */
+    .skip-link {
+      position: absolute;
+      top: -999px;
+      left: 0;
+      background: var(--foco);
+      color: #000;
+      padding: 14px 24px;
+      font-weight: 700;
+      font-size: 16px;
+      z-index: 9999;
+      border-radius: 0 0 8px 0;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* === REGIÃO ARIA LIVE === */
+    #live-region {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* === CABEÇALHO === */
+    header {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .header-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header-marca {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-bloco {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--vermelho);
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--branco);
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .header-titulo h1 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--branco);
+      line-height: 1.2;
+    }
+
+    .header-titulo p {
+      font-size: 13px;
+      color: #A5D6A7;
+      margin-top: 2px;
+    }
+
+    .btn-silenciar {
+      background: var(--vermelho);
+      color: var(--branco);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      flex-shrink: 0;
+    }
+    .btn-silenciar:hover { background: #B71C1C; }
+    .btn-silenciar:focus-visible { outline-color: #FFD54F; }
+
+    /* === LAYOUT PRINCIPAL === */
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* === TELAS === */
+    .tela { display: none; padding-top: 32px; }
+    .tela.ativa { display: block; }
+
+    /* === BARRA DE PROGRESSO === */
+    .progresso {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .prog-label {
+      font-size: 13px;
+      color: var(--cinza-texto);
+      white-space: nowrap;
+    }
+    .prog-trilha {
+      flex: 1;
+      height: 6px;
+      background: var(--cinza-borda);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .prog-barra {
+      height: 100%;
+      background: var(--verde);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    /* === TÍTULOS DE SEÇÃO === */
+    .tela-titulo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      margin-bottom: 6px;
+    }
+    .tela-sub {
+      font-size: 16px;
+      color: var(--cinza-texto);
+      margin-bottom: 24px;
+    }
+
+    /* === GRADE DE LOCAIS === */
+    .grade-locais {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+      list-style: none;
+    }
+
+    .btn-local {
+      background: var(--branco);
+      border: 2px solid var(--cinza-borda);
+      border-radius: 12px;
+      padding: 20px 12px 16px;
+      text-align: center;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--preto);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .btn-local svg {
+      width: 36px;
+      height: 36px;
+      color: var(--verde);
+    }
+
+    .btn-local:hover, .btn-local:focus-visible {
+      border-color: var(--verde);
+      background: var(--verde-claro);
+    }
+
+    .btn-local[aria-pressed="true"] {
+      border-color: var(--verde);
+      background: var(--verde-claro);
+      color: var(--verde-escuro);
+      box-shadow: inset 0 0 0 2px var(--verde);
+    }
+
+    .btn-local[aria-pressed="true"] svg { color: var(--verde-escuro); }
+
+    .btn-local:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* === BOTÕES DE AÇÃO === */
+    .btn-primario {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      background: var(--verde);
+      color: var(--branco);
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background 0.15s;
+    }
+    .btn-primario:hover { background: var(--verde-escuro); }
+    .btn-primario:disabled { background: #9E9E9E; cursor: not-allowed; }
+
+    .btn-secundario {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: var(--verde-escuro);
+      border: 2px solid var(--verde-borda);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-secundario:hover { background: var(--verde-claro); }
+
+    /* === CARD DE ROTA === */
+    .card-rota {
+      background: var(--branco);
+      border: 2px solid var(--verde-borda);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .card-rota-header {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge-rota {
+      background: var(--vermelho);
+      color: var(--branco);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .rota-de-para {
+      font-size: 15px;
+      color: #C8E6C9;
+    }
+    .rota-de-para strong { color: var(--branco); }
+
+    .card-rota-corpo {
+      padding: 20px;
+    }
+
+    /* === TEXTO DA INSTRUÇÃO === */
+    .instrucao-box {
+      background: var(--verde-claro);
+      border-left: 5px solid var(--verde);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--preto);
+      margin-bottom: 20px;
+    }
+
+    /* === CONTROLES DE ÁUDIO === */
+    .controles-audio {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn-audio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 10px;
+      background: var(--branco);
+      border: 2px solid var(--cinza-borda);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--preto);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-audio svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .btn-audio:hover { background: var(--cinza-fundo); border-color: #9E9E9E; }
+
+    .btn-audio.tocando {
+      background: var(--verde-claro);
+      border-color: var(--verde);
+      color: var(--verde-escuro);
+    }
+
+    .btn-parar {
+      width: 100%;
+      background: var(--vermelho-claro);
+      border-color: #EF9A9A;
+      color: var(--vermelho);
+      margin-bottom: 12px;
+    }
+    .btn-parar:hover { background: #FFCDD2; }
+
+    /* === STATUS DO ÁUDIO === */
+    .status-audio {
+      text-align: center;
+      font-size: 14px;
+      color: var(--cinza-texto);
+      padding: 8px;
+      min-height: 36px;
+      border-radius: 6px;
+    }
+    .status-audio.falando {
+      color: var(--verde-escuro);
+      background: var(--verde-claro);
+      font-weight: 600;
+    }
+
+    /* === RODAPÉ === */
+    footer {
+      background: var(--verde-escuro);
+      color: #A5D6A7;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+    footer strong { color: var(--branco); }
+
+    /* === RESPONSIVO === */
+    @media (max-width: 480px) {
+      body { font-size: 16px; }
+      .header-titulo h1 { font-size: 15px; }
+      .grade-locais { grid-template-columns: repeat(2, 1fr); }
+      .tela-titulo { font-size: 20px; }
+      .btn-primario { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ACESSIBILIDADE: LINK PARA PULAR MENU -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- REGIÃO LIVE PARA LEITORES DE TELA -->
+  <div id="live-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-inner">
+      <div class="header-marca">
+        <div class="logo-bloco" aria-hidden="true">IF<br>MG</div>
+        <div class="header-titulo">
+          <h1>Guia de Navegação Acessível</h1>
+          <p>Campus Ibirité — Instituto Federal de Minas Gerais</p>
+        </div>
+      </div>
+      <button class="btn-silenciar" onclick="silenciarTudo()" aria-label="Parar qualquer áudio em reprodução">
+        ⏹ Silenciar
+      </button>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main id="conteudo-principal">
+
+    <!-- ===== TELA 1: ORIGEM ===== -->
+    <div id="tela-origem" class="tela ativa" role="region" aria-labelledby="titulo-origem">
+      <div class="progresso" aria-hidden="true">
+        <span class="prog-label">Passo 1 de 2</span>
+        <div class="prog-trilha"><div class="prog-barra" style="width:50%"></div></div>
+      </div>
+      <h2 class="tela-titulo" id="titulo-origem" tabindex="-1">Onde você está agora?</h2>
+      <p class="tela-sub" id="desc-origem">Selecione seu ponto de partida no campus</p>
+      <ul class="grade-locais" role="group" aria-labelledby="titulo-origem" aria-describedby="desc-origem" id="grade-origem"></ul>
+      <button class="btn-primario" id="btn-ir-destino" onclick="irParaDestino()" disabled aria-disabled="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Próximo: escolher destino
+      </button>
+    </div>
+
+    <!-- ===== TELA 2: DESTINO ===== -->
+    <div id="tela-destino" class="tela" role="region" aria-labelledby="titulo-destino">
+      <div class="progresso" aria-hidden="true">
+        <span class="prog-label">Passo 2 de 2</span>
+        <div class="prog-trilha"><div class="prog-barra" style="width:100%"></div></div>
+      </div>
+      <h2 class="tela-titulo" id="titulo-destino" tabindex="-1">Para onde você quer ir?</h2>
+      <p class="tela-sub" id="desc-destino">Selecione seu destino no campus</p>
+      <ul class="grade-locais" role="group" aria-labelledby="titulo-destino" aria-describedby="desc-destino" id="grade-destino"></ul>
+      <button class="btn-primario" id="btn-ouvir" onclick="irParaInstrucoes()" disabled aria-disabled="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        Ouvir as instruções
+      </button>
+      <button class="btn-secundario" style="margin-top:10px" onclick="voltarOrigem()">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Voltar
+      </button>
+    </div>
+
+    <!-- ===== TELA 3: INSTRUÇÕES ===== -->
+    <div id="tela-instrucoes" class="tela" role="region" aria-labelledby="titulo-instrucoes">
+      <h2 class="tela-titulo" id="titulo-instrucoes" tabindex="-1">Instruções de navegação</h2>
+
+      <div class="card-rota">
+        <div class="card-rota-header">
+          <span class="badge-rota">Rota</span>
+          <p class="rota-de-para">
+            <strong id="label-origem-rota"></strong>
+            <span aria-hidden="true"> → </span>
+            <span class="sr-only"> até </span>
+            <strong id="label-destino-rota"></strong>
+          </p>
+        </div>
+        <div class="card-rota-corpo">
+          <div class="instrucao-box" id="texto-instrucao" aria-live="polite" aria-atomic="true">
+            <!-- texto da rota aqui -->
+          </div>
+
+          <div class="controles-audio">
+            <button class="btn-audio" id="btn-play" onclick="tocarOuPausar()" aria-label="Ouvir instruções em voz alta">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              Ouvir
+            </button>
+            <button class="btn-audio" id="btn-repetir" onclick="repetir()" aria-label="Repetir instruções desde o início">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+              Repetir
+            </button>
+          </div>
+
+          <button class="btn-audio btn-parar" onclick="parar()" aria-label="Parar o áudio imediatamente">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+            Parar áudio
+          </button>
+
+          <p class="status-audio" id="status-audio" aria-live="polite" aria-atomic="true">
+            Pressione "Ouvir" para iniciar
+          </p>
+        </div>
+      </div>
+
+      <button class="btn-secundario" onclick="novaRota()">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Buscar outra rota
+      </button>
+    </div>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>
+      <strong>IFMG — Campus Ibirité</strong><br>
+      Guia de Navegação para Pessoas com Deficiência Visual<br>
+      Em caso de dificuldade, procure a portaria ou a secretaria do campus.
+    </p>
+  </footer>
+
+  <script>
+    /* =============================================
+       DADOS DOS LOCAIS
+    ============================================= */
+    const locais = {
+      portaria: {
+        nome: "Portaria / Entrada",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V12"/><path d="M2 7l10-5 10 5"/><rect x="9" y="14" width="6" height="7"/></svg>`
+      },
+      secretaria: {
+        nome: "Secretaria",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`
+      },
+      biblioteca: {
+        nome: "Biblioteca",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
+      },
+      cantina: {
+        nome: "Cantina / Refeitório",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`
+      },
+      salas: {
+        nome: "Salas de Aula",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`
+      },
+      laboratorios: {
+        nome: "Laboratórios",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 3h6l1 9H8L9 3z"/><path d="M8 12l-4 8h16l-4-8"/><line x1="12" y1="3" x2="12" y2="7"/></svg>`
+      },
+      banheiros: {
+        nome: "Banheiros",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="7" r="2"/><circle cx="15" cy="7" r="2"/><path d="M5 21v-4a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v4"/><line x1="9" y1="13" x2="9" y2="21"/><line x1="15" y1="13" x2="15" y2="21"/></svg>`
+      }
+    };
+
+    /* =============================================
+       ROTAS E INSTRUÇÕES
+       Substitua os textos abaixo pelas instruções
+       reais do campus IFMG Ibirité.
+    ============================================= */
+    const rotas = {
+      "portaria-secretaria":
+        "Você está na Portaria Principal. Entre pelo portão e siga em frente pela calçada central por aproximadamente vinte passos. " +
+        "Ao chegar ao cruzamento, vire à esquerda. Suba a rampa de acesso que está à sua frente. " +
+        "A Secretaria fica à sua direita, identificada por uma porta de vidro. " +
+        "Há uma campainha na altura da mão, do lado esquerdo da porta.",
+
+      "portaria-biblioteca":
+        "Você está na Portaria Principal. Siga em frente pela calçada central por cerca de trinta passos. " +
+        "A Biblioteca fica no segundo bloco à sua direita. " +
+        "Desça a rampa de acesso e a entrada está logo à frente, com porta automática que abre ao se aproximar.",
+
+      "portaria-cantina":
+        "Você está na Portaria Principal. Ao entrar, vire imediatamente à direita. " +
+        "Siga pela calçada lateral por aproximadamente vinte e cinco passos em linha reta. " +
+        "A Cantina está ao final do corredor. A entrada é sempre aberta durante o horário de funcionamento.",
+
+      "portaria-salas":
+        "Você está na Portaria Principal. Siga em frente pela calçada central por aproximadamente quarenta passos. " +
+        "Você chegará ao Bloco de Salas de Aula. " +
+        "Suba pela rampa que fica à sua direita ou pelas escadas centrais. " +
+        "As salas são identificadas com plaquetas em braile e com numeração em relevo.",
+
+      "portaria-laboratorios":
+        "Você está na Portaria Principal. Siga em frente pela calçada central por aproximadamente cinquenta passos até o final. " +
+        "Vire à esquerda. Os Laboratórios ficam no bloco ao fundo, identificado por portas de metal.",
+
+      "portaria-banheiros":
+        "Você está na Portaria Principal. Entre e siga em frente por quinze passos. " +
+        "Os Banheiros ficam à sua esquerda, sinalizados por piso tátil de alerta. " +
+        "O banheiro masculino é o primeiro; o feminino fica logo ao lado.",
+
+      "secretaria-biblioteca":
+        "Você está na Secretaria. Saia pela porta e vire à direita na calçada principal. " +
+        "Siga em frente por aproximadamente vinte e cinco passos. " +
+        "A Biblioteca fica no segundo bloco à sua esquerda, com porta automática.",
+
+      "secretaria-cantina":
+        "Você está na Secretaria. Saia e desça a rampa de acesso. Vire à direita. " +
+        "Siga pela calçada lateral por cerca de vinte passos. " +
+        "A Cantina fica ao final do corredor, à sua direita.",
+
+      "secretaria-salas":
+        "Você está na Secretaria. Saia pela porta e siga pela calçada central em direção ao campus. " +
+        "O Bloco de Salas de Aula fica à sua frente, a aproximadamente trinta passos. " +
+        "Use a rampa à direita para subir.",
+
+      "secretaria-laboratorios":
+        "Você está na Secretaria. Saia e siga pela calçada central em direção ao fundo do campus. " +
+        "Após aproximadamente quarenta passos, vire à esquerda. " +
+        "Os Laboratórios ficam no bloco identificado por portas de metal.",
+
+      "secretaria-banheiros":
+        "Você está na Secretaria. Saia pela porta e vire à esquerda. " +
+        "Desça a rampa de acesso. Os Banheiros ficam a dez passos à sua esquerda, sinalizados com piso tátil.",
+
+      "biblioteca-cantina":
+        "Você está na Biblioteca. Saia pela porta automática e vire à esquerda na calçada principal. " +
+        "Siga em frente por aproximadamente trinta passos. " +
+        "A Cantina fica ao final do corredor, à sua direita.",
+
+      "biblioteca-salas":
+        "Você está na Biblioteca. Saia e vire à direita na calçada. " +
+        "Siga em frente por vinte passos até o Bloco de Salas de Aula, que fica à sua esquerda.",
+
+      "biblioteca-laboratorios":
+        "Você está na Biblioteca. Saia pela porta automática e siga pela calçada principal em frente. " +
+        "Após trinta passos, vire à direita e siga por mais vinte passos. " +
+        "Os Laboratórios estão no bloco com portas de metal.",
+
+      "biblioteca-banheiros":
+        "Você está na Biblioteca. Saia e siga à direita pela calçada principal por vinte passos. " +
+        "Os Banheiros ficam à sua esquerda, antes da escada principal, sinalizados com piso tátil.",
+
+      "cantina-salas":
+        "Você está na Cantina. Saia pela entrada e siga pela calçada lateral à sua esquerda. " +
+        "Após vinte passos, vire à esquerda novamente na calçada central. " +
+        "O Bloco de Salas de Aula fica a quinze passos, à sua direita.",
+
+      "cantina-laboratorios":
+        "Você está na Cantina. Saia e vire à esquerda, seguindo pela calçada central até o fundo. " +
+        "Os Laboratórios ficam no último bloco, identificado por portas de metal.",
+
+      "cantina-banheiros":
+        "Você está na Cantina. Saia pela entrada e vire à esquerda imediatamente. " +
+        "Os Banheiros ficam a quinze passos, com piso tátil de orientação.",
+
+      "salas-laboratorios":
+        "Você está nas Salas de Aula. Desça pela rampa ou escadas. " +
+        "Na calçada central, vire à esquerda e siga até o fundo. " +
+        "Os Laboratórios ficam no bloco ao final, com portas de metal.",
+
+      "salas-banheiros":
+        "Você está nas Salas de Aula. Desça pela rampa lateral ou pelas escadas centrais. " +
+        "Ao chegar na calçada, vire à direita. " +
+        "Os Banheiros ficam a dez passos, sinalizados com piso tátil.",
+
+      "laboratorios-banheiros":
+        "Você está nos Laboratórios. Saia pelas portas de metal e siga pela calçada à sua direita. " +
+        "Após vinte passos em direção ao bloco principal, os Banheiros ficam à sua esquerda, sinalizados com piso tátil."
+    };
+
+    /* =============================================
+       ESTADO DA APLICAÇÃO
+    ============================================= */
+    let origemAtual = null;
+    let destinoAtual = null;
+    let falando = false;
+
+    /* =============================================
+       INICIALIZAÇÃO
+    ============================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+      construirGrade("grade-origem", selecionarOrigem, null);
+      anunciar("Bem-vindo ao Guia de Navegação Acessível do IFMG Campus Ibirité. Passo 1 de 2: escolha seu ponto de partida.");
+      document.getElementById("titulo-origem").focus();
+    });
+
+    /* =============================================
+       CONSTRUÇÃO DAS GRADES
+    ============================================= */
+    function construirGrade(idGrade, handler, excluir) {
+      const grade = document.getElementById(idGrade);
+      grade.innerHTML = "";
+      Object.entries(locais).forEach(([key, val]) => {
+        if (key === excluir) return;
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.className = "btn-local";
+        btn.dataset.key = key;
+        btn.setAttribute("aria-pressed", "false");
+        btn.setAttribute("aria-label", val.nome);
+        btn.innerHTML = val.icone + `<span>${val.nome}</span>`;
+        btn.addEventListener("click", () => handler(btn, key));
+        li.appendChild(btn);
+        grade.appendChild(li);
+      });
+    }
+
+    /* =============================================
+       FLUXO: ORIGEM
+    ============================================= */
+    function selecionarOrigem(btn, key) {
+      document.querySelectorAll("#grade-origem .btn-local").forEach(b => {
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.setAttribute("aria-pressed", "true");
+      origemAtual = key;
+      const btnNext = document.getElementById("btn-ir-destino");
+      btnNext.disabled = false;
+      btnNext.removeAttribute("aria-disabled");
+      anunciar(locais[key].nome + " selecionado como ponto de partida. Pressione Próximo para continuar.");
+    }
+
+    function irParaDestino() {
+      if (!origemAtual) return;
+      parar();
+      construirGrade("grade-destino", selecionarDestino, origemAtual);
+      document.getElementById("btn-ouvir").disabled = true;
+      document.getElementById("btn-ouvir").setAttribute("aria-disabled", "true");
+      mostrarTela("tela-destino");
+      anunciar("Passo 2 de 2. Escolha o seu destino no campus.");
+    }
+
+    /* =============================================
+       FLUXO: DESTINO
+    ============================================= */
+    function selecionarDestino(btn, key) {
+      document.querySelectorAll("#grade-destino .btn-local").forEach(b => {
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.setAttribute("aria-pressed", "true");
+      destinoAtual = key;
+      const btnOuvir = document.getElementById("btn-ouvir");
+      btnOuvir.disabled = false;
+      btnOuvir.removeAttribute("aria-disabled");
+      anunciar(locais[key].nome + " selecionado como destino. Pressione Ouvir as instruções para continuar.");
+    }
+
+    function irParaInstrucoes() {
+      if (!origemAtual || !destinoAtual) return;
+      parar();
+
+      document.getElementById("label-origem-rota").textContent = locais[origemAtual].nome;
+      document.getElementById("label-destino-rota").textContent = locais[destinoAtual].nome;
+
+      const chave1 = `${origemAtual}-${destinoAtual}`;
+      const chave2 = `${destinoAtual}-${origemAtual}`;
+      let texto = rotas[chave1];
+      if (!texto && rotas[chave2]) {
+        texto = "Atenção: esta instrução descreve o caminho no sentido inverso. " + rotas[chave2];
+      }
+      if (!texto) {
+        texto = "A instrução para esta rota ainda não está disponível. Por favor, solicite ajuda na portaria ou na secretaria do campus.";
+      }
+
+      document.getElementById("texto-instrucao").textContent = texto;
+      document.getElementById("status-audio").textContent = 'Pressione "Ouvir" para iniciar';
+      document.getElementById("status-audio").className = "status-audio";
+      atualizarBtnPlay(false);
+
+      mostrarTela("tela-instrucoes");
+      anunciar(
+        "Instruções de " + locais[origemAtual].nome +
+        " até " + locais[destinoAtual].nome +
+        ". Pressione Ouvir para ouvir as instruções em voz alta."
+      );
+      document.getElementById("btn-play").focus();
+    }
+
+    /* =============================================
+       NAVEGAÇÃO ENTRE TELAS
+    ============================================= */
+    function mostrarTela(idTela) {
+      document.querySelectorAll(".tela").forEach(t => t.classList.remove("ativa"));
+      const tela = document.getElementById(idTela);
+      tela.classList.add("ativa");
+      const titulo = tela.querySelector("[tabindex='-1']");
+      if (titulo) setTimeout(() => titulo.focus(), 50);
+    }
+
+    function voltarOrigem() {
+      parar();
+      destinoAtual = null;
+      mostrarTela("tela-origem");
+      anunciar("Voltando para seleção de origem. Passo 1 de 2.");
+    }
+
+    function novaRota() {
+      parar();
+      origemAtual = null;
+      destinoAtual = null;
+      document.querySelectorAll(".btn-local").forEach(b => b.setAttribute("aria-pressed","false"));
+      document.getElementById("btn-ir-destino").disabled = true;
+      document.getElementById("btn-ir-destino").setAttribute("aria-disabled","true");
+      construirGrade("grade-origem", selecionarOrigem, null);
+      mostrarTela("tela-origem");
+      anunciar("Nova busca. Passo 1 de 2. Escolha seu ponto de partida.");
+    }
+
+    /* =============================================
+       SÍNTESE DE VOZ (TTS)
+    ============================================= */
+    function tocarOuPausar() {
+      if (!window.speechSynthesis) {
+        setStatus("Síntese de voz não disponível neste navegador. Tente pelo Chrome ou Safari.", false);
+        return;
+      }
+      if (falando) {
+        speechSynthesis.pause();
+        falando = false;
+        atualizarBtnPlay(false, "Continuar");
+        setStatus("Áudio pausado. Pressione Continuar para retomar.", false);
+      } else {
+        if (speechSynthesis.paused) {
+          speechSynthesis.resume();
+          falando = true;
+          atualizarBtnPlay(true, "Pausar");
+          setStatus("Reproduzindo...", true);
+        } else {
+          iniciarFala();
+        }
+      }
+    }
+
+    function iniciarFala() {
+      speechSynthesis.cancel();
+      const texto = document.getElementById("texto-instrucao").textContent;
+      const u = new SpeechSynthesisUtterance(texto);
+      u.lang = "pt-BR";
+      u.rate = 0.85;
+      u.pitch = 1.0;
+      u.volume = 1.0;
+
+      u.onstart = () => {
+        falando = true;
+        atualizarBtnPlay(true, "Pausar");
+        setStatus("Reproduzindo instruções...", true);
+      };
+      u.onend = () => {
+        falando = false;
+        atualizarBtnPlay(false, "Ouvir");
+        setStatus("Áudio concluído.", false);
+      };
+      u.onerror = () => {
+        falando = false;
+        atualizarBtnPlay(false, "Ouvir");
+        setStatus("Erro ao reproduzir. Tente novamente.", false);
+      };
+      speechSynthesis.speak(u);
+    }
+
+    function repetir() {
+      parar();
+      setTimeout(() => iniciarFala(), 150);
+    }
+
+    function parar() {
+      if (window.speechSynthesis) speechSynthesis.cancel();
+      falando = false;
+      atualizarBtnPlay(false, "Ouvir");
+      const el = document.getElementById("status-audio");
+      if (el) setStatus("Áudio parado.", false);
+    }
+
+    function silenciarTudo() {
+      parar();
+      anunciar("Áudio silenciado.");
+    }
+
+    function atualizarBtnPlay(ativo, label) {
+      const btn = document.getElementById("btn-play");
+      if (!btn) return;
+      const iconeOuvir = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
+      const iconePausa = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+      const txt = label || (ativo ? "Pausar" : "Ouvir");
+      btn.innerHTML = (ativo ? iconePausa : iconeOuvir) + " " + txt;
+      if (ativo) {
+        btn.classList.add("tocando");
+        btn.setAttribute("aria-label", "Pausar instruções em voz alta");
+      } else {
+        btn.classList.remove("tocando");
+        btn.setAttribute("aria-label", txt === "Continuar" ? "Continuar instruções em voz alta" : "Ouvir instruções em voz alta");
+      }
+    }
+
+    function setStatus(msg, ativo) {
+      const el = document.getElementById("status-audio");
+      if (!el) return;
+      el.textContent = msg;
+      el.className = "status-audio" + (ativo ? " falando" : "");
+    }
+
+    /* =============================================
+       ARIA LIVE REGION
+    ============================================= */
+    function anunciar(msg) {
+      const el = document.getElementById("live-region");
+      el.textContent = "";
+      setTimeout(() => { el.textContent = msg; }, 60);
+    }
+
+    /* Corrige bug do Chrome com SpeechSynthesis pausando em abas */
+    setInterval(() => {
+      if (window.speechSynthesis && falando && speechSynthesis.speaking && !speechSynthesis.paused) {
+        speechSynthesis.resume();
+      }
+    }, 8000);
+  </script>
+
+</body>
+</html>
