@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +23,13 @@
     }
 
     /* === RESET E BASE === */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Open Sans', Arial, Helvetica, sans-serif;
@@ -52,7 +59,10 @@
       border-radius: 0 0 8px 0;
       text-decoration: none;
     }
-    .skip-link:focus { top: 0; }
+
+    .skip-link:focus {
+      top: 0;
+    }
 
     /* === REGIÃO ARIA LIVE === */
     #live-region {
@@ -71,7 +81,14 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .header-inner {
@@ -134,8 +151,14 @@
       font-family: inherit;
       flex-shrink: 0;
     }
-    .btn-silenciar:hover { background: #B71C1C; }
-    .btn-silenciar:focus-visible { outline-color: #FFD54F; }
+
+    .btn-silenciar:hover {
+      background: #B71C1C;
+    }
+
+    .btn-silenciar:focus-visible {
+      outline-color: #FFD54F;
+    }
 
     /* === LAYOUT PRINCIPAL === */
     main {
@@ -145,8 +168,14 @@
     }
 
     /* === TELAS === */
-    .tela { display: none; padding-top: 32px; }
-    .tela.ativa { display: block; }
+    .tela {
+      display: none;
+      padding-top: 32px;
+    }
+
+    .tela.ativa {
+      display: block;
+    }
 
     /* === BARRA DE PROGRESSO === */
     .progresso {
@@ -155,11 +184,13 @@
       gap: 10px;
       margin-bottom: 28px;
     }
+
     .prog-label {
       font-size: 13px;
       color: var(--cinza-texto);
       white-space: nowrap;
     }
+
     .prog-trilha {
       flex: 1;
       height: 6px;
@@ -167,6 +198,7 @@
       border-radius: 3px;
       overflow: hidden;
     }
+
     .prog-barra {
       height: 100%;
       background: var(--verde);
@@ -181,6 +213,7 @@
       color: var(--verde-escuro);
       margin-bottom: 6px;
     }
+
     .tela-sub {
       font-size: 16px;
       color: var(--cinza-texto);
@@ -221,7 +254,8 @@
       color: var(--verde);
     }
 
-    .btn-local:hover, .btn-local:focus-visible {
+    .btn-local:hover,
+    .btn-local:focus-visible {
       border-color: var(--verde);
       background: var(--verde-claro);
     }
@@ -233,7 +267,9 @@
       box-shadow: inset 0 0 0 2px var(--verde);
     }
 
-    .btn-local[aria-pressed="true"] svg { color: var(--verde-escuro); }
+    .btn-local[aria-pressed="true"] svg {
+      color: var(--verde-escuro);
+    }
 
     .btn-local:disabled {
       opacity: 0.35;
@@ -260,8 +296,15 @@
       margin-bottom: 10px;
       transition: background 0.15s;
     }
-    .btn-primario:hover { background: var(--verde-escuro); }
-    .btn-primario:disabled { background: #9E9E9E; cursor: not-allowed; }
+
+    .btn-primario:hover {
+      background: var(--verde-escuro);
+    }
+
+    .btn-primario:disabled {
+      background: #9E9E9E;
+      cursor: not-allowed;
+    }
 
     .btn-secundario {
       display: flex;
@@ -280,7 +323,10 @@
       cursor: pointer;
       transition: background 0.15s;
     }
-    .btn-secundario:hover { background: var(--verde-claro); }
+
+    .btn-secundario:hover {
+      background: var(--verde-claro);
+    }
 
     /* === CARD DE ROTA === */
     .card-rota {
@@ -316,7 +362,10 @@
       font-size: 15px;
       color: #C8E6C9;
     }
-    .rota-de-para strong { color: var(--branco); }
+
+    .rota-de-para strong {
+      color: var(--branco);
+    }
 
     .card-rota-corpo {
       padding: 20px;
@@ -358,8 +407,17 @@
       color: var(--preto);
       transition: background 0.15s, border-color 0.15s;
     }
-    .btn-audio svg { width: 22px; height: 22px; flex-shrink: 0; }
-    .btn-audio:hover { background: var(--cinza-fundo); border-color: #9E9E9E; }
+
+    .btn-audio svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .btn-audio:hover {
+      background: var(--cinza-fundo);
+      border-color: #9E9E9E;
+    }
 
     .btn-audio.tocando {
       background: var(--verde-claro);
@@ -374,7 +432,10 @@
       color: var(--vermelho);
       margin-bottom: 12px;
     }
-    .btn-parar:hover { background: #FFCDD2; }
+
+    .btn-parar:hover {
+      background: #FFCDD2;
+    }
 
     /* === STATUS DO ÁUDIO === */
     .status-audio {
@@ -385,6 +446,7 @@
       min-height: 36px;
       border-radius: 6px;
     }
+
     .status-audio.falando {
       color: var(--verde-escuro);
       background: var(--verde-claro);
@@ -400,18 +462,36 @@
       font-size: 14px;
       margin-top: 40px;
     }
-    footer strong { color: var(--branco); }
+
+    footer strong {
+      color: var(--branco);
+    }
 
     /* === RESPONSIVO === */
     @media (max-width: 480px) {
-      body { font-size: 16px; }
-      .header-titulo h1 { font-size: 15px; }
-      .grade-locais { grid-template-columns: repeat(2, 1fr); }
-      .tela-titulo { font-size: 20px; }
-      .btn-primario { font-size: 16px; }
+      body {
+        font-size: 16px;
+      }
+
+      .header-titulo h1 {
+        font-size: 15px;
+      }
+
+      .grade-locais {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tela-titulo {
+        font-size: 20px;
+      }
+
+      .btn-primario {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ACESSIBILIDADE: LINK PARA PULAR MENU -->
@@ -424,15 +504,13 @@
   <header>
     <div class="header-inner">
       <div class="header-marca">
-        <div class="logo-bloco" aria-hidden="true">IF<br>MG</div>
+        <img src="images/logo.png" alt="Logo do IFMG" class="logo-img">
+
         <div class="header-titulo">
           <h1>Guia de Navegação Acessível</h1>
           <p>Campus Ibirité — Instituto Federal de Minas Gerais</p>
         </div>
       </div>
-      <button class="btn-silenciar" onclick="silenciarTudo()" aria-label="Parar qualquer áudio em reprodução">
-        ⏹ Silenciar
-      </button>
     </div>
   </header>
 
@@ -443,13 +521,18 @@
     <div id="tela-origem" class="tela ativa" role="region" aria-labelledby="titulo-origem">
       <div class="progresso" aria-hidden="true">
         <span class="prog-label">Passo 1 de 2</span>
-        <div class="prog-trilha"><div class="prog-barra" style="width:50%"></div></div>
+        <div class="prog-trilha">
+          <div class="prog-barra" style="width:50%"></div>
+        </div>
       </div>
       <h2 class="tela-titulo" id="titulo-origem" tabindex="-1">Onde você está agora?</h2>
       <p class="tela-sub" id="desc-origem">Selecione seu ponto de partida no campus</p>
-      <ul class="grade-locais" role="group" aria-labelledby="titulo-origem" aria-describedby="desc-origem" id="grade-origem"></ul>
+      <ul class="grade-locais" role="group" aria-labelledby="titulo-origem" aria-describedby="desc-origem"
+        id="grade-origem"></ul>
       <button class="btn-primario" id="btn-ir-destino" onclick="irParaDestino()" disabled aria-disabled="true">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
         Próximo: escolher destino
       </button>
     </div>
@@ -458,17 +541,25 @@
     <div id="tela-destino" class="tela" role="region" aria-labelledby="titulo-destino">
       <div class="progresso" aria-hidden="true">
         <span class="prog-label">Passo 2 de 2</span>
-        <div class="prog-trilha"><div class="prog-barra" style="width:100%"></div></div>
+        <div class="prog-trilha">
+          <div class="prog-barra" style="width:100%"></div>
+        </div>
       </div>
       <h2 class="tela-titulo" id="titulo-destino" tabindex="-1">Para onde você quer ir?</h2>
       <p class="tela-sub" id="desc-destino">Selecione seu destino no campus</p>
-      <ul class="grade-locais" role="group" aria-labelledby="titulo-destino" aria-describedby="desc-destino" id="grade-destino"></ul>
+      <ul class="grade-locais" role="group" aria-labelledby="titulo-destino" aria-describedby="desc-destino"
+        id="grade-destino"></ul>
       <button class="btn-primario" id="btn-ouvir" onclick="irParaInstrucoes()" disabled aria-disabled="true">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+        </svg>
         Ouvir as instruções
       </button>
       <button class="btn-secundario" style="margin-top:10px" onclick="voltarOrigem()">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
         Voltar
       </button>
     </div>
@@ -494,17 +585,26 @@
 
           <div class="controles-audio">
             <button class="btn-audio" id="btn-play" onclick="tocarOuPausar()" aria-label="Ouvir instruções em voz alta">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
               Ouvir
             </button>
-            <button class="btn-audio" id="btn-repetir" onclick="repetir()" aria-label="Repetir instruções desde o início">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+            <button class="btn-audio" id="btn-repetir" onclick="repetir()"
+              aria-label="Repetir instruções desde o início">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1 0 .49-3.5" />
+              </svg>
               Repetir
             </button>
           </div>
 
           <button class="btn-audio btn-parar" onclick="parar()" aria-label="Parar o áudio imediatamente">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+            </svg>
             Parar áudio
           </button>
 
@@ -515,7 +615,10 @@
       </div>
 
       <button class="btn-secundario" onclick="novaRota()">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8" />
+          <path d="M21 21l-4.35-4.35" />
+        </svg>
         Buscar outra rota
       </button>
     </div>
@@ -873,9 +976,9 @@
       parar();
       origemAtual = null;
       destinoAtual = null;
-      document.querySelectorAll(".btn-local").forEach(b => b.setAttribute("aria-pressed","false"));
+      document.querySelectorAll(".btn-local").forEach(b => b.setAttribute("aria-pressed", "false"));
       document.getElementById("btn-ir-destino").disabled = true;
-      document.getElementById("btn-ir-destino").setAttribute("aria-disabled","true");
+      document.getElementById("btn-ir-destino").setAttribute("aria-disabled", "true");
       construirGrade("grade-origem", selecionarOrigem, null);
       mostrarTela("tela-origem");
       anunciar("Nova busca. Passo 1 de 2. Escolha seu ponto de partida.");
@@ -992,4 +1095,5 @@
   </script>
 
 </body>
+
 </html>
