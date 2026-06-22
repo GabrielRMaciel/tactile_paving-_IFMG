@@ -536,21 +536,13 @@
        DADOS DOS LOCAIS
     ============================================= */
     const locais = {
-      portaria: {
-        nome: "Portaria / Entrada",
+      entrada: {
+        nome: "Entrada Principal",
         icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V12"/><path d="M2 7l10-5 10 5"/><rect x="9" y="14" width="6" height="7"/></svg>`
       },
       secretaria: {
         nome: "Secretaria",
         icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`
-      },
-      biblioteca: {
-        nome: "Biblioteca",
-        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
-      },
-      cantina: {
-        nome: "Cantina / Refeitório",
-        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`
       },
       salas: {
         nome: "Salas de Aula",
@@ -563,6 +555,18 @@
       banheiros: {
         nome: "Banheiros",
         icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="7" r="2"/><circle cx="15" cy="7" r="2"/><path d="M5 21v-4a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v4"/><line x1="9" y1="13" x2="9" y2="21"/><line x1="15" y1="13" x2="15" y2="21"/></svg>`
+      },
+      gabinetes: {
+        nome: "Gabinetes",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/></svg>`
+      },
+      biblioteca: {
+        nome: "Biblioteca",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
+      },
+      cantina: {
+        nome: "Cantina",
+        icone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`
       }
     };
 
@@ -572,106 +576,176 @@
        reais do campus IFMG Ibirité.
     ============================================= */
     const rotas = {
-      "portaria-secretaria":
-        "Você está na Portaria Principal. Entre pelo portão e siga em frente pela calçada central por aproximadamente vinte passos. " +
-        "Ao chegar ao cruzamento, vire à esquerda. Suba a rampa de acesso que está à sua frente. " +
-        "A Secretaria fica à sua direita, identificada por uma porta de vidro. " +
-        "Há uma campainha na altura da mão, do lado esquerdo da porta.",
+      "entrada-secretaria":
+        "Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
 
-      "portaria-biblioteca":
-        "Você está na Portaria Principal. Siga em frente pela calçada central por cerca de trinta passos. " +
-        "A Biblioteca fica no segundo bloco à sua direita. " +
-        "Desça a rampa de acesso e a entrada está logo à frente, com porta automática que abre ao se aproximar.",
+      "entrada-salas":
+        "Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
 
-      "portaria-cantina":
-        "Você está na Portaria Principal. Ao entrar, vire imediatamente à direita. " +
-        "Siga pela calçada lateral por aproximadamente vinte e cinco passos em linha reta. " +
-        "A Cantina está ao final do corredor. A entrada é sempre aberta durante o horário de funcionamento.",
+      "entrada-laboratorios":
+        "Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
 
-      "portaria-salas":
-        "Você está na Portaria Principal. Siga em frente pela calçada central por aproximadamente quarenta passos. " +
-        "Você chegará ao Bloco de Salas de Aula. " +
-        "Suba pela rampa que fica à sua direita ou pelas escadas centrais. " +
-        "As salas são identificadas com plaquetas em braile e com numeração em relevo.",
+      "entrada-banheiros":
+        "Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
 
-      "portaria-laboratorios":
-        "Você está na Portaria Principal. Siga em frente pela calçada central por aproximadamente cinquenta passos até o final. " +
-        "Vire à esquerda. Os Laboratórios ficam no bloco ao fundo, identificado por portas de metal.",
+      "entrada-gabinetes":
+        "Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
 
-      "portaria-banheiros":
-        "Você está na Portaria Principal. Entre e siga em frente por quinze passos. " +
-        "Os Banheiros ficam à sua esquerda, sinalizados por piso tátil de alerta. " +
-        "O banheiro masculino é o primeiro; o feminino fica logo ao lado.",
+      "entrada-biblioteca":
+        "Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca.",
 
-      "secretaria-biblioteca":
-        "Você está na Secretaria. Saia pela porta e vire à direita na calçada principal. " +
-        "Siga em frente por aproximadamente vinte e cinco passos. " +
-        "A Biblioteca fica no segundo bloco à sua esquerda, com porta automática.",
+      "entrada-cantina":
+        "Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
 
-      "secretaria-cantina":
-        "Você está na Secretaria. Saia e desça a rampa de acesso. Vire à direita. " +
-        "Siga pela calçada lateral por cerca de vinte passos. " +
-        "A Cantina fica ao final do corredor, à sua direita.",
+      "secretaria-entrada":
+        "Para retornar à Entrada Principal a partir de a Secretaria, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
+
+      "salas-entrada":
+        "Para retornar à Entrada Principal a partir de as Salas de Aula, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
+
+      "laboratorios-entrada":
+        "Para retornar à Entrada Principal a partir de os Laboratórios, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
+
+      "banheiros-entrada":
+        "Para retornar à Entrada Principal a partir de os Banheiros, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
+
+      "gabinetes-entrada":
+        "Para retornar à Entrada Principal a partir de os Gabinetes, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
+
+      "biblioteca-entrada":
+        "Para retornar à Entrada Principal a partir de a Biblioteca, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
+
+      "cantina-entrada":
+        "Para retornar à Entrada Principal a partir de a Cantina, oriente-se buscando os pisos direcionais e o piso tátil de alerta percorridos na ida. Caminhe sentindo a parede pela qual chegou até este local, na direção contrária. Se precisar usar o elevador, aperte o botão de subida, aguarde o sinal sonoro e siga até o andar de origem. Em caso de dúvida, peça orientação a um funcionário próximo.",
 
       "secretaria-salas":
-        "Você está na Secretaria. Saia pela porta e siga pela calçada central em direção ao campus. " +
-        "O Bloco de Salas de Aula fica à sua frente, a aproximadamente trinta passos. " +
-        "Use a rampa à direita para subir.",
+        "Estando em a Secretaria, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
 
       "secretaria-laboratorios":
-        "Você está na Secretaria. Saia e siga pela calçada central em direção ao fundo do campus. " +
-        "Após aproximadamente quarenta passos, vire à esquerda. " +
-        "Os Laboratórios ficam no bloco identificado por portas de metal.",
+        "Estando em a Secretaria, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
 
       "secretaria-banheiros":
-        "Você está na Secretaria. Saia pela porta e vire à esquerda. " +
-        "Desça a rampa de acesso. Os Banheiros ficam a dez passos à sua esquerda, sinalizados com piso tátil.",
+        "Estando em a Secretaria, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
 
-      "biblioteca-cantina":
-        "Você está na Biblioteca. Saia pela porta automática e vire à esquerda na calçada principal. " +
-        "Siga em frente por aproximadamente trinta passos. " +
-        "A Cantina fica ao final do corredor, à sua direita.",
+      "secretaria-gabinetes":
+        "Estando em a Secretaria, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
 
-      "biblioteca-salas":
-        "Você está na Biblioteca. Saia e vire à direita na calçada. " +
-        "Siga em frente por vinte passos até o Bloco de Salas de Aula, que fica à sua esquerda.",
+      "secretaria-biblioteca":
+        "Estando em a Secretaria, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca.",
 
-      "biblioteca-laboratorios":
-        "Você está na Biblioteca. Saia pela porta automática e siga pela calçada principal em frente. " +
-        "Após trinta passos, vire à direita e siga por mais vinte passos. " +
-        "Os Laboratórios estão no bloco com portas de metal.",
+      "secretaria-cantina":
+        "Estando em a Secretaria, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
 
-      "biblioteca-banheiros":
-        "Você está na Biblioteca. Saia e siga à direita pela calçada principal por vinte passos. " +
-        "Os Banheiros ficam à sua esquerda, antes da escada principal, sinalizados com piso tátil.",
-
-      "cantina-salas":
-        "Você está na Cantina. Saia pela entrada e siga pela calçada lateral à sua esquerda. " +
-        "Após vinte passos, vire à esquerda novamente na calçada central. " +
-        "O Bloco de Salas de Aula fica a quinze passos, à sua direita.",
-
-      "cantina-laboratorios":
-        "Você está na Cantina. Saia e vire à esquerda, seguindo pela calçada central até o fundo. " +
-        "Os Laboratórios ficam no último bloco, identificado por portas de metal.",
-
-      "cantina-banheiros":
-        "Você está na Cantina. Saia pela entrada e vire à esquerda imediatamente. " +
-        "Os Banheiros ficam a quinze passos, com piso tátil de orientação.",
+      "salas-secretaria":
+        "Estando em as Salas de Aula, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
 
       "salas-laboratorios":
-        "Você está nas Salas de Aula. Desça pela rampa ou escadas. " +
-        "Na calçada central, vire à esquerda e siga até o fundo. " +
-        "Os Laboratórios ficam no bloco ao final, com portas de metal.",
+        "Estando em as Salas de Aula, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
 
       "salas-banheiros":
-        "Você está nas Salas de Aula. Desça pela rampa lateral ou pelas escadas centrais. " +
-        "Ao chegar na calçada, vire à direita. " +
-        "Os Banheiros ficam a dez passos, sinalizados com piso tátil.",
+        "Estando em as Salas de Aula, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
+
+      "salas-gabinetes":
+        "Estando em as Salas de Aula, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
+
+      "salas-biblioteca":
+        "Estando em as Salas de Aula, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca.",
+
+      "salas-cantina":
+        "Estando em as Salas de Aula, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
+
+      "laboratorios-secretaria":
+        "Estando em os Laboratórios, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
+
+      "laboratorios-salas":
+        "Estando em os Laboratórios, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
 
       "laboratorios-banheiros":
-        "Você está nos Laboratórios. Saia pelas portas de metal e siga pela calçada à sua direita. " +
-        "Após vinte passos em direção ao bloco principal, os Banheiros ficam à sua esquerda, sinalizados com piso tátil."
+        "Estando em os Laboratórios, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
+
+      "laboratorios-gabinetes":
+        "Estando em os Laboratórios, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
+
+      "laboratorios-biblioteca":
+        "Estando em os Laboratórios, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca.",
+
+      "laboratorios-cantina":
+        "Estando em os Laboratórios, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
+
+      "banheiros-secretaria":
+        "Estando em os Banheiros, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
+
+      "banheiros-salas":
+        "Estando em os Banheiros, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
+
+      "banheiros-laboratorios":
+        "Estando em os Banheiros, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
+
+      "banheiros-gabinetes":
+        "Estando em os Banheiros, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
+
+      "banheiros-biblioteca":
+        "Estando em os Banheiros, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca.",
+
+      "banheiros-cantina":
+        "Estando em os Banheiros, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
+
+      "gabinetes-secretaria":
+        "Estando em os Gabinetes, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
+
+      "gabinetes-salas":
+        "Estando em os Gabinetes, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
+
+      "gabinetes-laboratorios":
+        "Estando em os Gabinetes, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
+
+      "gabinetes-banheiros":
+        "Estando em os Gabinetes, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
+
+      "gabinetes-biblioteca":
+        "Estando em os Gabinetes, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca.",
+
+      "gabinetes-cantina":
+        "Estando em os Gabinetes, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
+
+      "biblioteca-secretaria":
+        "Estando em a Biblioteca, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
+
+      "biblioteca-salas":
+        "Estando em a Biblioteca, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
+
+      "biblioteca-laboratorios":
+        "Estando em a Biblioteca, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
+
+      "biblioteca-banheiros":
+        "Estando em a Biblioteca, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
+
+      "biblioteca-gabinetes":
+        "Estando em a Biblioteca, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
+
+      "biblioteca-cantina":
+        "Estando em a Biblioteca, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Siga até cruzar o piso direcional na diagonal. Após passar por ele, busque a parede da esquerda para usá-la como linha guia. Tateie essa parede até o final dela. Quando a parede terminar, vire à esquerda. Continue se guiando pela parede da esquerda até o final. A cantina estará localizada na porta à sua esquerda.",
+
+      "cantina-secretaria":
+        "Estando em a Cantina, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à direita. Siga em frente até o final do corredor para chegar à Secretaria.",
+
+      "cantina-salas":
+        "Estando em a Cantina, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. As salas de aula estarão dispostas na parede da direita e ao final do corredor. Você pode identificar a numeração com o auxílio das placas que estão ao lado de cada porta.",
+
+      "cantina-laboratorios":
+        "Estando em a Cantina, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Continue avançando. Os laboratórios de ciências estão dispostos na parede esquerda. O laboratório de informática se encontra ao final do corredor. Você identificará os laboratórios lendo as placas localizadas ao lado de cada porta.",
+
+      "cantina-banheiros":
+        "Estando em a Cantina, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente até o final da parede à direita. Vire para a direita e siga pelo corredor. Tateie a parede da direita. Você passará pelas portas das salas de aula. Ao encontrar a segunda porta, vire à esquerda e cruze o corredor. Avance até encontrar o piso direcional. Os banheiros acessíveis estarão à frente, imediatamente nas paredes da direita e da esquerda.",
+
+      "cantina-gabinetes":
+        "Estando em a Cantina, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Não o siga, apenas passe por ele. Guie-se tateando a parede da direita. O acesso para os gabinetes estará localizado na primeira entrada à sua direita.",
+
+      "cantina-biblioteca":
+        "Estando em a Cantina, a rota mais segura é retornar até a Entrada Principal, usando como referência os pisos direcionais e o piso tátil percorridos na ida. Ao chegar novamente à entrada do primeiro andar, siga a partir daí a rota normal: Siga em frente pelo corredor. Você cruzará um piso direcional na diagonal. Não o siga, apenas passe por ele. Atenção aos pisos de alerta para os obstáculos. Avance até o segundo piso direcional. Este você deve seguir virando à direita. Ele o guiará direto aos elevadores. O mapa tátil estará à sua esquerda. Use-o para entender a disposição do presente andar. Aperte o botão de descida e aguarde o sinal sonoro que confirma a chamada. Quando o elevador chegar, o sistema avisará se está subindo ou descendo. Entre e localize o painel na parede direita. Aperte o botão do térreo, vire-se para a porta e aguarde o aviso de chegada. Ao sair no térreo, vire à esquerda. Busque a parede da direita e a utilize como sua linha guia com a bengala. Siga tateando a parede. Você perceberá o vão da escada no caminho. Apenas passe por ele e continue avançando reto. No final deste corredor, a parede terminará em uma porta de vidro. Esta é a entrada da biblioteca."
+
     };
+
 
     /* =============================================
        ESTADO DA APLICAÇÃO
@@ -757,12 +831,8 @@
       document.getElementById("label-origem-rota").textContent = locais[origemAtual].nome;
       document.getElementById("label-destino-rota").textContent = locais[destinoAtual].nome;
 
-      const chave1 = `${origemAtual}-${destinoAtual}`;
-      const chave2 = `${destinoAtual}-${origemAtual}`;
-      let texto = rotas[chave1];
-      if (!texto && rotas[chave2]) {
-        texto = "Atenção: esta instrução descreve o caminho no sentido inverso. " + rotas[chave2];
-      }
+      const chave = `${origemAtual}-${destinoAtual}`;
+      let texto = rotas[chave];
       if (!texto) {
         texto = "A instrução para esta rota ainda não está disponível. Por favor, solicite ajuda na portaria ou na secretaria do campus.";
       }
